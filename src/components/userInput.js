@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { View, Text, Button, Icon} from '@shoutem/ui';
 import { TextInput } from 'react-native';
 
+import store from 'react-native-simple-store';
+
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -14,6 +16,16 @@ export default class App extends Component {
 
         this.render = this.render.bind(this);
     }
+
+    _handleUserData() {
+        store
+            .save('user', {
+                name: this.state.name,
+                number: this.state.number
+            })
+            .catch(err => alert(err.message));
+    }
+
     render() {
         return(
             <View style={{flex: 1, width: '80%', alignSelf: 'center'}}>
@@ -27,7 +39,7 @@ export default class App extends Component {
                     onChangeText = {(text) => this.setState({number: text})} 
                     value={this.state.number}
                 />
-                <Button onPress={() => alert(this.state.number)}><Icon name="pin"/></Button>
+                <Button onPress={this._handleUserData.bind(this)}><Icon name="pin"/></Button>
             </View>
         );
     }
