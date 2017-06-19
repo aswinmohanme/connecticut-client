@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {Card, Text} from '@shoutem/ui';
 
-const UserCard = ({ name, phone }) => {
+const UserCard = ({ data }) => {
     return(
         <Card>
-            <Text>{name}</Text>
-            <Text>{phone}</Text>
+            <Text>{data}</Text>
         </Card>
     );
 }

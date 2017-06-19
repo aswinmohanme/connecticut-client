@@ -7,7 +7,7 @@ import { View } from '@shoutem/ui';
 const BarCodeGenerate = ({ name, number }) => {
     return(
         <QRCode 
-            value={name + '~' + number}
+            value={number}
             size={160}
         />
     );

@@ -10,6 +10,7 @@ class BarCodeReader extends Component {
         this.state = {
             data: '',
             hasCameraPermission: null,
+            scanned: false,
         };
 
         this.render = this.render.bind(this);
@@ -21,16 +22,16 @@ class BarCodeReader extends Component {
     }
 
     render(){
-        const { hasCameraPermission } = this.state;
-        if(hasCameraPermission === null){
-            return <Text>Hey Ther</Text>;
+        const { hasCameraPermission, scanned} = this.state;
+        if(hasCameraPermission === null || scanned === true){
+            return <View></View>;
         }else if(hasCameraPermission === false){
             return <Text> Oops No Camera! </Text>
         } else {
             return(
                 <View style={{flex: 1}}>
                     <BarCodeScanner 
-                        onBarCodeRead = { this._handleQrCode}
+                        onBarCodeRead={this._handleQrCodeScan.bind(this)}
                         style={{flex: 1}}
                     />
                 </View>
@@ -38,9 +39,11 @@ class BarCodeReader extends Component {
         }
     }
 
-    _handleQrCode(data){
-        alert(JSON.stringify(data));
+    _handleQrCodeScan(data) {
+        this.setState({scanned: true});
+        this.props._handleQrCode(data);
     }
+
 }
 
 export default BarCodeReader;
