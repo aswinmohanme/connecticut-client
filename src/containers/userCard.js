@@ -8,7 +8,8 @@ class UserCardScreen extends Component {
     render() {
         const { data } = this.props.navigation.state.params;
         return (
-            <View style={{marginTop: Expo.Constants.statusBarHeight, flex:1}}>
+            <View style={{marginTop: Expo.Constants.statusBarHeight, flex:1, alignItems: 'center', justifyContent: 'center', 
+                backgroundColor: '#34495e', elevation: 2 }}>
                 <UserCard data={data} />
             </View>
         );

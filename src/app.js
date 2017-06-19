@@ -37,7 +37,7 @@ export default class App extends Component {
                 <View styleName="fill-parent vertical v-end">
                     <Button 
                         style={{height: 56}}
-                        onPress={() => navigate('BarCodeScan')}>
+                        onPress={() => navigate('UserCardScreen', {data: '8589931950'})}>
                         <Icon style={{fontSize: 40}} name="camera-iris" />
                     </Button>
                 </View>
