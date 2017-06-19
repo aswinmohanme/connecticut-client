@@ -3,12 +3,12 @@ import {View, Text,Button, Title, Image} from '@shoutem/ui';
 import {WebBrowser} from 'expo';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
-const UserCard = ({ name, number,job_title, company, facebook, instagram, twitter}) => {
+const UserCard = ({ name, img, number,job_title, company, facebook, instagram, twitter}) => {
     return(
         <View styleName="lg-gutter" style={{width: '80%', alignItems: 'center', backgroundColor: '#ecf0f1', borderRadius: 8}}>
             <Image 
                 styleName="medium-avatar"
-                source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-3.png'}}
+                source={{ uri: img}}
             />
             <Title style={{fontSize: 24}} styleName="lg-gutter-top sm-gutter-bottom">{name}</Title>
             <Text styleName="" style={{fontSize: 18}}>{'Call => ' + number}</Text>
