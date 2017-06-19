@@ -3,8 +3,11 @@ import React from 'react';
 import { StyleSheet} from 'react-native';
 
 import {Examples, Text, View } from '@shoutem/ui';
+import { StackNavigator } from 'react-navigation';
 
-class App extends React.Component {
+import App from './src/app';
+
+export class Home extends React.Component {
   constructor(props){
     super(props);
 
@@ -31,10 +34,14 @@ class App extends React.Component {
 }
   render() {
     if (this.state.fontsAreLoaded)
-      return(<View><Text>Hello ISQIP</Text></View>);
+      return(<App />);
     else
-      return(<Expo.AppLoading />)
+      return(<Expo.AppLoading />);
   }
 }
 
-Expo.registerRootComponent(App);
+const Connecticut = StackNavigator({
+    HomeScreen: {screen: Home}
+});
+
+Expo.registerRootComponent(Connecticut);
