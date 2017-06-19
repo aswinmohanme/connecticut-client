@@ -48,8 +48,8 @@ export class Home extends React.Component {
 
 const Connecticut = StackNavigator({
     HomeScreen: {screen: Home},
+    UserCardScreen: {screen: UserCardScreen},
     BarCodeScan: {screen: BarCodeScan},
-    UserCardScreen: {screen: UserCardScreen}
   },{
     navigationOptions: {
         header: null,

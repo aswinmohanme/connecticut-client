@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {Card, Text} from '@shoutem/ui';
+import {View, Text} from '@shoutem/ui';
 
 const UserCard = ({ data }) => {
     return(
-        <Card>
+        <View>
             <Text>{data}</Text>
-        </Card>
+        </View>
     );
 }
 export default UserCard;

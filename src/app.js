@@ -11,22 +11,19 @@ export default class App extends Component {
         super(props);
 
         this.state = {
-            number: null,
+            number: '',
         };
 
         this.render = this.render.bind(this);
     }
 
-    async componentWillMount(){
+   async componentWillMount(){
         user = await store.get('user');
 
-        if (user === null){
-
-        }
+        user = user || { number: '8589931950' };
 
         this.setState({
-            number: user.number,
-            name: user.name,
+            number: user.number ,
         });
     }
 
@@ -36,7 +33,6 @@ export default class App extends Component {
             <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                 <BarCodeGenerate 
                     number={this.state.number}
-                    name={this.state.name}
                 />
                 <View styleName="fill-parent vertical v-end">
                     <Button 
