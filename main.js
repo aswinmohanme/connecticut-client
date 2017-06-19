@@ -6,6 +6,7 @@ import {Examples, Text, View } from '@shoutem/ui';
 import { StackNavigator } from 'react-navigation';
 
 import App from './src/app';
+import BarCodeScan from './src/containers/barCodeScan';
 
 export class Home extends React.Component {
   constructor(props){
@@ -34,14 +35,19 @@ export class Home extends React.Component {
 }
   render() {
     if (this.state.fontsAreLoaded)
-      return(<View style={{marginTop: Expo.Constants.statusBarHeight, flex:1}}><App /></View>);
+      return(
+        <View style={{marginTop: Expo.Constants.statusBarHeight, flex:1}}>
+          <App navigation={this.props.navigation} />
+        </View>
+      );
     else
       return(<Expo.AppLoading />);
   }
 }
 
 const Connecticut = StackNavigator({
-    HomeScreen: {screen: Home}
+    HomeScreen: {screen: Home},
+    BarCodeScan: {screen: BarCodeScan},
   },{
     navigationOptions: {
         header: null,

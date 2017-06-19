@@ -31,6 +31,7 @@ export default class App extends Component {
     }
 
     render() {
+        const { navigate } = this.props.navigation;
         return(
             <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                 <BarCodeGenerate 
@@ -38,7 +39,9 @@ export default class App extends Component {
                     name={this.state.name}
                 />
                 <View styleName="fill-parent vertical v-end">
-                    <Button style={{height: 56}}>
+                    <Button 
+                        style={{height: 56}}
+                        onPress={() => navigate('BarCodeScan')}>
                         <Icon style={{fontSize: 40}} name="camera-iris" />
                     </Button>
                 </View>
