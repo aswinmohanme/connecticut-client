@@ -34,14 +34,18 @@ export class Home extends React.Component {
 }
   render() {
     if (this.state.fontsAreLoaded)
-      return(<App />);
+      return(<View style={{marginTop: Expo.Constants.statusBarHeight, flex:1}}><App /></View>);
     else
       return(<Expo.AppLoading />);
   }
 }
 
 const Connecticut = StackNavigator({
-    HomeScreen: {screen: Home}
+        HomeScreen: {screen: Home}
+    },{
+        navigationOptions: {
+            header: null,
+        }
 });
 
 Expo.registerRootComponent(Connecticut);
