@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import store from 'react-native-simple-store';
-import { View, Text } from '@shoutem/ui';
+import { View, Text, Title, Button, } from '@shoutem/ui';
 
 import BarCodeGenerate from './components/barCodeGenerate';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class App extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ export default class App extends Component {
 
         this.setState({
             number: user.number,
+            name: user.name,
         });
     }
 
@@ -33,7 +35,13 @@ export default class App extends Component {
             <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                 <BarCodeGenerate 
                     number={this.state.number}
+                    name={this.state.name}
                 />
+                <View styleName="fill-parent vertical v-end">
+                    <Button style={{height: 56}}>
+                        <Icon style={{fontSize: 40}} name="camera-iris" />
+                    </Button>
+                </View>
             </View>
         );
     }
