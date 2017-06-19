@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Expo, { BarCodeScanner, Permissions  } from 'expo';
 
-import {View, Text} from '@shoutem/ui';
+import { View } from '@shoutem/ui';
 
 class BarCodeReader extends Component {
     constructor(props) {
@@ -31,7 +31,6 @@ class BarCodeReader extends Component {
                 <View style={{flex: 1}}>
                     <BarCodeScanner 
                         onBarCodeRead = { this._handleQrCode}
-                        style={{flex: 1}}
                     />
                 </View>
             );

@@ -41,11 +41,11 @@ export class Home extends React.Component {
 }
 
 const Connecticut = StackNavigator({
-        HomeScreen: {screen: Home}
-    },{
-        navigationOptions: {
-            header: null,
-        }
+    HomeScreen: {screen: Home}
+  },{
+    navigationOptions: {
+        header: null,
+    }
 });
 
 Expo.registerRootComponent(Connecticut);

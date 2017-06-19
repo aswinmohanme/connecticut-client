@@ -4,14 +4,12 @@ import React, { Component } from 'react';
 import QRCode from 'react-native-qrcode';
 import { View } from '@shoutem/ui';
 
-const BarCodeGenerate = ({ name, phone }) => {
+const BarCodeGenerate = ({ name, number }) => {
     return(
-        <View style={{flex: 1}}>
-            <QRCode 
-                value={phone}
-                size={120}
-            />
-        </View>
+        <QRCode 
+            value={number}
+            size={160}
+        />
     );
 }
 export default BarCodeGenerate;
