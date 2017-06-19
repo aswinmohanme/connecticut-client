@@ -4,12 +4,12 @@ import { StackNavigator } from 'react-navigation';
 import { Text } from '@shoutem/ui';
 
 import BarCodeReader from './components/barCodeReader';
-import UserCard from './components/userCard';
+import BarCodeGenerate from './components/barCodeGenerate';
 
 export default class App extends Component {
     render() {
         return(
-            <UserCard name={"Aswin"} phone={"8589931950"}/>
+            <BarCodeGenerate name={"Aswin"} phone={"8589931950"}/>
         );
     }
 }
