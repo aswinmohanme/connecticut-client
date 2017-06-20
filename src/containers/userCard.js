@@ -5,11 +5,11 @@ import {create} from 'apisauce';
 import store from 'react-native-simple-store';
 
 import UserCard from '../components/userCard';
-import {View, Button, Title} from '@shoutem/ui';
+import {View, Button, Title, Text} from '@shoutem/ui';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const api = create({
-    baseURL: 'https://api.myjson.com/bins'
+    baseURL: 'http://127.0.0.1:8000'
 });
 
 class UserCardScreen extends Component {
@@ -17,7 +17,7 @@ class UserCardScreen extends Component {
         super(props);
 
         this.state = {
-            user_data: '',
+            user_data: null,
         };
         
         this.render = this.render.bind(this);
@@ -26,36 +26,36 @@ class UserCardScreen extends Component {
     componentWillMount() {
         const {data} = this.props.navigation.state.params;
 
+        alert(data);
         api
-            .get('/16janr')
+            .get('/get/id?' + data)
             .then(resp => this.setState({user_data: resp.data}));
     }
 
     render() {
         const {user_data} = this.state;
-        return (
-            <View style={{marginTop: Expo.Constants.statusBarHeight, flex:1, alignItems: 'center', justifyContent: 'center', 
-                backgroundColor: '#34495e', elevation: 2 }}>
-                <UserCard 
-                    name={user_data.name}
-                    img={user_data.img}
-                    number={user_data.number}
-                    job_title={user_data.job_title}
-                    company={user_data.company}
-                    facebook={user_data.facebook}
-                    twitter={user_data.twitter}
-                    instagram={user_data.instagram}
-                />
-                <View styleName="fill-parent vertical v-end">
-                    <Button 
-                        style={{height: 56}}
-                        onPress={this._saveData.bind(this)}>
-                        <Icon style={{fontSize: 20}} name="life-saver" />
-                        <Title styleName="md-gutter">Save</Title>
-                    </Button>
+
+        if(user_data === null)
+            return (
+                <View><Text>Please wait while we load the Api</Text></View>
+            );
+        else
+            return (
+                <View style={{marginTop: Expo.Constants.statusBarHeight, flex:1, alignItems: 'center', justifyContent: 'center', 
+                    backgroundColor: '#34495e', elevation: 2 }}>
+                    <UserCard 
+                        data={user_data}
+                    />
+                    <View styleName="fill-parent vertical v-end">
+                        <Button 
+                            style={{height: 56}}
+                            onPress={this._saveData.bind(this)}>
+                            <Icon style={{fontSize: 20}} name="life-saver" />
+                            <Title styleName="md-gutter">Save</Title>
+                        </Button>
+                    </View>
                 </View>
-            </View>
-        );
+            );
     }
 
     async _saveData() {
