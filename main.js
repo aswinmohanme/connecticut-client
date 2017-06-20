@@ -8,6 +8,7 @@ import { StackNavigator } from 'react-navigation';
 import App from './src/app';
 import BarCodeScan from './src/containers/barCodeScan';
 import UserCardScreen from './src/containers/userCard';
+import UserInput from './src/components/userInput';
 
 export class Home extends React.Component {
   constructor(props){
@@ -49,6 +50,7 @@ export class Home extends React.Component {
 const Connecticut = StackNavigator({
     HomeScreen: {screen: Home},
     UserCardScreen: {screen: UserCardScreen},
+    UserInputScreen: {screen: UserInput},
     BarCodeScan: {screen: BarCodeScan},
   },{
     navigationOptions: {

@@ -8,12 +8,12 @@ const UserCard = ({data}) => {
         <View styleName="lg-gutter" style={{width: '80%', alignItems: 'center', backgroundColor: '#ecf0f1', borderRadius: 8}}>
             <Image 
                 styleName="medium-avatar"
-                source={{ uri: data.photo}}
+                source={{ uri: "https://api.adorable.io/avatars/285/abott@adorable.png"}}
             />
             <Title style={{fontSize: 24}} styleName="lg-gutter-top sm-gutter-bottom">{data.user_name}</Title>
-            <Text styleName="" style={{fontSize: 18}}>{'Call => ' + mobile}</Text>
+            <Text styleName="" style={{fontSize: 18}}>{'Call => ' + data["mobile"]}</Text>
 
-            <Text styleName="md-gutter-top" style={{fontSize: 20}}>{data.job_title + ' @ '+ data.company}</Text>
+            <Text styleName="md-gutter-top" style={{fontSize: 20}}>{data["job_title"] + ' @ '+ data["company"]}</Text>
 
             <View styleName="horizontal sm-gutter-top" >
             <View styleName="sm-gutter" style={{elevation: 2}}>

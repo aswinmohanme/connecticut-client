@@ -5,11 +5,12 @@ import {create} from 'apisauce';
 import store from 'react-native-simple-store';
 
 import UserCard from '../components/userCard';
-import {View, Button, Title, Text} from '@shoutem/ui';
+import {View, Button, Title, Text, NavigationBar} from '@shoutem/ui';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Iconm from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const api = create({
-    baseURL: 'http://127.0.0.1:8000'
+    baseURL: 'http://192.168.1.103:8000'
 });
 
 class UserCardScreen extends Component {
@@ -17,7 +18,8 @@ class UserCardScreen extends Component {
         super(props);
 
         this.state = {
-            user_data: null,
+            user_data: {},
+            did_fetch: false,
         };
         
         this.render = this.render.bind(this);
@@ -26,26 +28,29 @@ class UserCardScreen extends Component {
     componentWillMount() {
         const {data} = this.props.navigation.state.params;
 
-        alert(data);
         api
-            .get('/get/id?' + data)
-            .then(resp => this.setState({user_data: resp.data}));
+            .get('/get?id=' + data)
+            // .then(resp => this.setState({user_data: resp.data}))
+            .then(response => this.setState({user_data: response.data, did_fetch: true}))
+            .catch();
     }
 
     render() {
-        const {user_data} = this.state;
 
-        if(user_data === null)
+        if(!this.state.did_fetch){
             return (
                 <View><Text>Please wait while we load the Api</Text></View>
-            );
+            );}
         else
             return (
                 <View style={{marginTop: Expo.Constants.statusBarHeight, flex:1, alignItems: 'center', justifyContent: 'center', 
                     backgroundColor: '#34495e', elevation: 2 }}>
-                    <UserCard 
-                        data={user_data}
+                <View styleName="fill-parent">
+                    <NavigationBar 
+                        leftComponent={<Button onPress={()=> this.props.navigation.navigate('HomeScreen')}><Iconm style={{padding: 20, fontSize: 18}}name="qrcode-scan" /></Button>}
+                        centerComponent={<Title style={{fontSize: 16}}>CONNECTICUT</Title>}
                     />
+                    </View>
                     <View styleName="fill-parent vertical v-end">
                         <Button 
                             style={{height: 56}}
@@ -54,6 +59,9 @@ class UserCardScreen extends Component {
                             <Title styleName="md-gutter">Save</Title>
                         </Button>
                     </View>
+                    <UserCard 
+                        data={this.state.user_data}
+                    />
                 </View>
             );
     }
@@ -70,7 +78,7 @@ class UserCardScreen extends Component {
             for(i=0; i < prev_data.length; ++i){
                 p = JSON.parse(prev_data[i])
                 if ( p.number === this.state.user_data.number){
-                    ToastAndroid.showWithGravity('Already Saved !!', ToastAndroid.LONG, ToastAndroid.BOTTOM);
+                    ToastAndroid.showWithGravity('Already Saved !!', ToastAndroid.LONG, ToastAndroid.CENTER);
                     return;
                 }
             }
